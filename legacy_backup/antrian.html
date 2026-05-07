@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antrian Publik - DEWI TAILOR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .heading {
+        font-family: "Playfair Display", serif;
+      }
+      .badge-menunggu {
+        background-color: #f59e0b;
+        color: white;
+      }
+      .badge-dikerjakan {
+        background-color: #06b6d4;
+        color: white;
+      }
+      .badge-fitting {
+        background-color: #f97316;
+        color: white;
+      }
+      .badge-selesai {
+        background-color: #10b981;
+        color: white;
+      }
+    </style>
+  </head>
+  <body style="background-color: #fdf8f5; color: #2d1b1b">
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold heading"
+          style="color: #9b6b7a"
+          >DEWI TAILOR</a
+        >
+        <a href="index.html" class="text-gray-700 hover:text-gray-900"
+          >← Beranda</a
+        >
+      </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+      <h1 class="heading text-4xl md:text-5xl mb-2" style="color: #9b6b7a">
+        Antrian Pengerjaan
+      </h1>
+      <p class="text-gray-600 mb-12">
+        Pantau status real-time semua pesanan yang sedang dikerjakan
+      </p>
+
+      <!-- STATISTIK -->
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <div class="bg-white rounded-lg shadow p-6">
+          <p class="text-gray-600 text-sm font-semibold mb-2">
+            Total Antrian Aktif
+          </p>
+          <p
+            class="text-4xl font-bold"
+            style="color: #9b6b7a"
+            id="total-antrian"
+          >
+            0
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <p class="text-gray-600 text-sm font-semibold mb-2">
+            Sedang Dikerjakan
+          </p>
+          <p
+            class="text-4xl font-bold"
+            style="color: #06b6d4"
+            id="sedang-dikerjakan"
+          >
+            0
+          </p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <p class="text-gray-600 text-sm font-semibold mb-2">
+            Estimasi Tunggu Total
+          </p>
+          <p
+            class="text-4xl font-bold"
+            style="color: #f59e0b"
+            id="estimasi-tunggu"
+          >
+            -
+          </p>
+        </div>
+      </div>
+
+      <!-- YANG SEDANG DIKERJAKAN -->
+      <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <h2 class="heading text-2xl mb-6" style="color: #9b6b7a">
+          Sedang Dikerjakan Sekarang 🧵
+        </h2>
+        <div id="sedang-dikerjakan-container" class="text-center py-8">
+          <p class="text-gray-500">Tidak ada pesanan yang sedang dikerjakan</p>
+        </div>
+      </div>
+
+      <!-- TABEL ANTRIAN -->
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div
+          class="px-6 py-4 border-b-2"
+          style="border-bottom-color: #9b6b7a; background-color: #f8f8f8"
+        >
+          <h2 class="heading text-2xl" style="color: #9b6b7a">
+            Daftar Antrian
+          </h2>
+        </div>
+
+        <!-- Desktop View -->
+        <div class="hidden md:block overflow-x-auto">
+          <table class="w-full">
+            <thead style="background-color: #fdf8f5">
+              <tr>
+                <th
+                  class="px-6 py-3 text-left font-semibold border-b"
+                  style="border-bottom-color: #e8d5c4"
+                >
+                  No Antrian
+                </th>
+                <th
+                  class="px-6 py-3 text-left font-semibold border-b"
+                  style="border-bottom-color: #e8d5c4"
+                >
+                  Nama
+                </th>
+                <th
+                  class="px-6 py-3 text-left font-semibold border-b"
+                  style="border-bottom-color: #e8d5c4"
+                >
+                  Jenis Pakaian
+                </th>
+                <th
+                  class="px-6 py-3 text-left font-semibold border-b"
+                  style="border-bottom-color: #e8d5c4"
+                >
+                  Status
+                </th>
+                <th
+                  class="px-6 py-3 text-left font-semibold border-b"
+                  style="border-bottom-color: #e8d5c4"
+                >
+                  Estimasi Selesai
+                </th>
+              </tr>
+            </thead>
+            <tbody id="antrian-table-body">
+              <tr>
+                <td colspan="5" class="px-6 py-8 text-center text-gray-500">
+                  Memuat data...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Mobile View -->
+        <div class="md:hidden" id="antrian-mobile">
+          <!-- Cards untuk mobile akan ditampilkan di sini -->
+        </div>
+      </div>
+
+      <!-- KETERANGAN -->
+      <div class="mt-12 p-6 bg-yellow-50 border-l-4 border-yellow-500 rounded">
+        <h3 class="font-bold mb-3" style="color: #b8860b">
+          ℹ️ Keterangan Status
+        </h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <span class="badge-menunggu px-3 py-1 rounded text-sm font-semibold"
+              >Menunggu</span
+            >
+            <p class="text-gray-700 mt-1">
+              Pesanan belum mulai dikerjakan, masih dalam antrian
+            </p>
+          </div>
+          <div>
+            <span
+              class="badge-dikerjakan px-3 py-1 rounded text-sm font-semibold"
+              >Sedang Dikerjakan</span
+            >
+            <p class="text-gray-700 mt-1">
+              Pesanan sedang dalam proses jahitan
+            </p>
+          </div>
+          <div>
+            <span class="badge-fitting px-3 py-1 rounded text-sm font-semibold"
+              >Fitting/Revisi</span
+            >
+            <p class="text-gray-700 mt-1">
+              Perlu kedatangan pelanggan untuk fitting atau revisi
+            </p>
+          </div>
+          <div>
+            <span class="badge-selesai px-3 py-1 rounded text-sm font-semibold"
+              >Selesai</span
+            >
+            <p class="text-gray-700 mt-1">Pesanan sudah siap diambil</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATATAN NAMA -->
+      <div class="mt-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded">
+        <p class="text-sm text-gray-700">
+          <strong>🔒 Privacy:</strong> Nama pelanggan ditampilkan dengan format
+          2 huruf pertama + *** (contoh: Siti Rahma → Si***)
+        </p>
+      </div>
+    </main>
+
+    <script>
+      function maskName(fullName) {
+        if (!fullName || fullName.length < 2) return "***";
+        const firstTwo = fullName.substring(0, 2);
+        return firstTwo + "***";
+      }
+
+      function getStatusBadge(status) {
+        const badges = {
+          Menunggu: "badge-menunggu",
+          Dikerjakan: "badge-dikerjakan",
+          Fitting: "badge-fitting",
+          Selesai: "badge-selesai",
+        };
+        return badges[status] || "bg-gray-400";
+      }
+
+      function loadAntrian() {
+        fetch("http://localhost:3000/api/orders")
+          .then((res) => res.json())
+          .then((orders) => {
+            // Filter orders yang aktif (bukan selesai atau dalam status tertentu)
+            const activeOrders = orders
+              .filter((o) => {
+                return o.status !== "Selesai" || o.bayar !== "Lunas";
+              })
+              .sort((a, b) => parseInt(a.noAntrian) - parseInt(b.noAntrian));
+
+            // Calculate statistics
+            const totalAntrian = activeOrders.length;
+            const sedangDikerjakan = activeOrders.filter(
+              (o) => o.status === "Dikerjakan",
+            ).length;
+
+            document.getElementById("total-antrian").textContent = totalAntrian;
+            document.getElementById("sedang-dikerjakan").textContent =
+              sedangDikerjakan;
+
+            // Display yang sedang dikerjakan
+            const sedangDikerjakanOrders = orders.filter(
+              (o) => o.status === "Dikerjakan",
+            );
+            const container = document.getElementById(
+              "sedang-dikerjakan-container",
+            );
+
+            if (sedangDikerjakanOrders.length > 0) {
+              const order = sedangDikerjakanOrders[0];
+              container.innerHTML = `
+                <div class="bg-gradient-to-r from-cyan-100 to-blue-100 rounded-lg p-6">
+                  <p class="text-gray-600 mb-2">No Antrian</p>
+                  <p class="text-5xl font-bold text-cyan-600 mb-4">${order.noAntrian}</p>
+                  <p class="text-lg font-semibold mb-2">${order.jenis}</p>
+                  <p class="text-gray-600">Estimasi Selesai: <strong>${order.estimasiSelesai ? new Date(order.estimasiSelesai).toLocaleDateString("id-ID") : "-"}</strong></p>
+                </div>
+              `;
+            }
+
+            // Load desktop table
+            const tableBody = document.getElementById("antrian-table-body");
+            if (activeOrders.length === 0) {
+              tableBody.innerHTML =
+                '<tr><td colspan="5" class="px-6 py-8 text-center text-gray-500">Tidak ada pesanan aktif</td></tr>';
+            } else {
+              tableBody.innerHTML = activeOrders
+                .map((order) => {
+                  const statusClass = getStatusBadge(order.status);
+                  const estimasiDate = order.estimasiSelesai
+                    ? new Date(order.estimasiSelesai).toLocaleDateString(
+                        "id-ID",
+                      )
+                    : "-";
+                  return `
+                    <tr class="border-b" style="border-bottom-color: #E8D5C4;">
+                      <td class="px-6 py-4 font-bold" style="color: #9B6B7A;">${order.noAntrian}</td>
+                      <td class="px-6 py-4">${maskName(order.nama)}</td>
+                      <td class="px-6 py-4">${order.jenis}</td>
+                      <td class="px-6 py-4">
+                        <span class="px-3 py-1 rounded text-white text-sm font-semibold ${statusClass}">
+                          ${order.status}
+                        </span>
+                      </td>
+                      <td class="px-6 py-4">${estimasiDate}</td>
+                    </tr>
+                  `;
+                })
+                .join("");
+            }
+
+            // Load mobile view
+            const mobileContainer = document.getElementById("antrian-mobile");
+            if (activeOrders.length === 0) {
+              mobileContainer.innerHTML =
+                '<div class="p-6 text-center text-gray-500">Tidak ada pesanan aktif</div>';
+            } else {
+              mobileContainer.innerHTML = activeOrders
+                .map((order) => {
+                  const statusClass = getStatusBadge(order.status);
+                  const estimasiDate = order.estimasiSelesai
+                    ? new Date(order.estimasiSelesai).toLocaleDateString(
+                        "id-ID",
+                      )
+                    : "-";
+                  return `
+                    <div class="p-4 border-b" style="border-bottom-color: #E8D5C4;">
+                      <div class="flex justify-between items-start mb-3">
+                        <div>
+                          <p class="text-xs text-gray-500">No Antrian</p>
+                          <p class="text-2xl font-bold" style="color: #9B6B7A;">${order.noAntrian}</p>
+                        </div>
+                        <span class="px-3 py-1 rounded text-white text-xs font-semibold ${statusClass}">
+                          ${order.status}
+                        </span>
+                      </div>
+                      <div class="space-y-1 text-sm">
+                        <p><span class="text-gray-600">Nama:</span> <strong>${maskName(order.nama)}</strong></p>
+                        <p><span class="text-gray-600">Jenis:</span> <strong>${order.jenis}</strong></p>
+                        <p><span class="text-gray-600">Estimasi:</span> <strong>${estimasiDate}</strong></p>
+                      </div>
+                    </div>
+                  `;
+                })
+                .join("");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            document.getElementById("antrian-table-body").innerHTML =
+              '<tr><td colspan="5" class="px-6 py-8 text-center text-red-500">⚠️ Tidak dapat terhubung ke server. Pastikan backend sudah berjalan.</td></tr>';
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadAntrian();
+        // Refresh setiap 30 detik
+        setInterval(loadAntrian, 30000);
+      });
+    </script>
+  </body>
+</html>

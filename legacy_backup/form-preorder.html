@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Pre-Order - DEWI TAILOR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .heading {
+        font-family: "Playfair Display", serif;
+      }
+      .btn-primary {
+        background-color: #9b6b7a;
+        color: white;
+        border-radius: 6px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        background-color: #7d5563;
+        box-shadow: 0 4px 12px rgba(155, 107, 122, 0.3);
+      }
+      .btn-secondary {
+        background-color: #e8d5c4;
+        color: #2d1b1b;
+        border-radius: 6px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-secondary:hover {
+        background-color: #d9c4b0;
+      }
+      .step-active {
+        background-color: #9b6b7a;
+        color: white;
+      }
+      .step-inactive {
+        background-color: #e8d5c4;
+        color: #2d1b1b;
+      }
+      .progress-bar {
+        background-color: #9b6b7a;
+      }
+      input,
+      textarea,
+      select {
+        border-color: #e8d5c4 !important;
+      }
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #9b6b7a !important;
+        box-shadow: 0 0 0 3px rgba(155, 107, 122, 0.1) !important;
+      }
+    </style>
+  </head>
+  <body style="background-color: #fdf8f5; color: #2d1b1b">
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <a
+          href="index.html"
+          class="text-2xl font-bold heading"
+          style="color: #9b6b7a"
+          >DEWI TAILOR</a
+        >
+        <a href="index.html" class="text-gray-700 hover:text-gray-900"
+          >← Kembali</a
+        >
+      </nav>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-12">
+      <!-- PROGRESS BAR -->
+      <div class="mb-8">
+        <div class="flex justify-between items-center mb-4">
+          <div class="flex-1 h-1 progress-bar mr-2" id="progress-bar"></div>
+        </div>
+        <div class="flex justify-between text-xs md:text-sm font-semibold">
+          <span class="step-indicator step-active" data-step="1">1. Jenis</span>
+          <span class="step-indicator step-inactive" data-step="2"
+            >2. Keterangan</span
+          >
+          <span class="step-indicator step-inactive" data-step="3"
+            >3. Data Diri</span
+          >
+          <span class="step-indicator step-inactive" data-step="4"
+            >4. Konfirmasi</span
+          >
+        </div>
+      </div>
+
+      <!-- FORM CONTAINER -->
+      <form id="preorderForm" class="bg-white rounded-lg shadow-lg p-8">
+        <!-- STEP 1: JENIS PAKAIAN -->
+        <div class="form-step" data-step="1">
+          <h2 class="heading text-2xl md:text-3xl mb-6" style="color: #9b6b7a">
+            Pilih Jenis Pakaian
+          </h2>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-3"
+              >Kategori Pelanggan <span class="text-red-500">*</span></label
+            >
+            <div class="flex gap-4">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="kategori"
+                  value="Wanita Dewasa"
+                  class="mr-2"
+                  required
+                />
+                <span>Wanita Dewasa</span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  name="kategori"
+                  value="Anak Perempuan"
+                  class="mr-2"
+                />
+                <span>Anak Perempuan</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-3"
+              >Jenis Pakaian <span class="text-red-500">*</span></label
+            >
+            <select
+              name="jenisPakaian"
+              id="jenisPakaian"
+              class="w-full border rounded px-4 py-2"
+              required
+            >
+              <option value="">-- Pilih jenis pakaian --</option>
+              <optgroup label="Wanita Dewasa">
+                <option value="Dress">Dress</option>
+                <option value="Kebaya">Kebaya</option>
+                <option value="Gamis">Gamis</option>
+                <option value="Blouse/Atasan">Blouse/Atasan</option>
+                <option value="Rok">Rok</option>
+                <option value="Celana Wanita">Celana Wanita</option>
+                <option value="Jumpsuit">Jumpsuit</option>
+                <option value="Outer/Cardigan">Outer/Cardigan</option>
+                <option value="Lainnya">Lainnya</option>
+              </optgroup>
+              <optgroup label="Anak Perempuan">
+                <option value="Dress Anak">Dress Anak</option>
+                <option value="Gamis Anak">Gamis Anak</option>
+                <option value="Rok Anak">Rok Anak</option>
+                <option value="Baju Pesta Anak">Baju Pesta Anak</option>
+                <option value="Seragam Anak">Seragam Anak</option>
+                <option value="Lainnya Anak">Lainnya</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+
+        <!-- STEP 2: KETERANGAN PAKAIAN -->
+        <div class="form-step hidden" data-step="2">
+          <h2 class="heading text-2xl md:text-3xl mb-6" style="color: #9b6b7a">
+            Keterangan Pakaian
+          </h2>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Deskripsi Model/Keinginan
+              <span class="text-red-500">*</span></label
+            >
+            <textarea
+              name="deskripsi"
+              id="deskripsi"
+              class="w-full border rounded px-4 py-2 h-24"
+              placeholder="Jelaskan model yang Anda inginkan, inspirasi, detail khusus, dll"
+              required
+            ></textarea>
+            <p class="text-xs text-gray-500 mt-1">
+              Contoh: Dress A-line dengan lengan pendek, detail renda di tepi
+              bawah, warna sesuai kain yang dibawa
+            </p>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Keterangan Khusus (Opsional)</label
+            >
+            <textarea
+              name="keterangan"
+              id="keterangan"
+              class="w-full border rounded px-4 py-2 h-20"
+              placeholder="Detail tambahan yang ingin dikomunikasikan"
+            ></textarea>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Jumlah Pakaian <span class="text-red-500">*</span></label
+            >
+            <input
+              type="number"
+              name="jumlah"
+              id="jumlah"
+              class="w-full border rounded px-4 py-2"
+              value="1"
+              min="1"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- STEP 3: DATA PELANGGAN -->
+        <div class="form-step hidden" data-step="3">
+          <h2 class="heading text-2xl md:text-3xl mb-6" style="color: #9b6b7a">
+            Data Pelanggan
+          </h2>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Nama Lengkap <span class="text-red-500">*</span></label
+            >
+            <input
+              type="text"
+              name="nama"
+              id="nama"
+              class="w-full border rounded px-4 py-2"
+              placeholder="Nama Anda"
+              required
+            />
+            <p class="text-xs text-gray-500 mt-1">
+              Nama ini akan digunakan untuk cek status pesanan
+            </p>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Nomor HP / WhatsApp <span class="text-red-500">*</span></label
+            >
+            <input
+              type="tel"
+              name="noHp"
+              id="noHp"
+              class="w-full border rounded px-4 py-2"
+              placeholder="Contoh: 08123456789"
+              required
+            />
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Tanggal Rencana Datang Fitting
+              <span class="text-red-500">*</span></label
+            >
+            <input
+              type="date"
+              name="tanggalFitting"
+              id="tanggalFitting"
+              class="w-full border rounded px-4 py-2"
+              required
+            />
+            <p class="text-xs text-gray-500 mt-1">
+              ⏰ Jam operasional: Senin-Jumat 10:00-17:00, Sabtu 10:00-16:00
+            </p>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Metode Pembayaran (Info Saja)
+              <span class="text-red-500">*</span></label
+            >
+            <select
+              name="metode"
+              id="metode"
+              class="w-full border rounded px-4 py-2"
+              required
+            >
+              <option value="">-- Pilih metode --</option>
+              <option value="Tunai">Tunai</option>
+              <option value="Transfer Bank">Transfer Bank</option>
+              <option value="QRIS">QRIS</option>
+            </select>
+            <p class="text-xs text-gray-500 mt-1">
+              💳 Pembayaran penuh dilakukan saat pengambilan
+            </p>
+          </div>
+        </div>
+
+        <!-- STEP 4: KONFIRMASI -->
+        <div class="form-step hidden" data-step="4">
+          <h2 class="heading text-2xl md:text-3xl mb-6" style="color: #9b6b7a">
+            Konfirmasi Pesanan
+          </h2>
+
+          <div id="ringasan" class="space-y-4 mb-8">
+            <!-- Ringkasan akan ditampilkan di sini -->
+          </div>
+
+          <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6">
+            <p class="font-semibold text-yellow-800 mb-2">⚠️ Penting!</p>
+            <ul class="text-sm text-yellow-700 space-y-1">
+              <li>
+                ✓ Estimasi harga & waktu pengerjaan ditentukan setelah fitting
+              </li>
+              <li>✓ Datang ke tempat sesuai tanggal yang telah dipilih</li>
+              <li>✓ Bawa bahan/kain yang sudah disiapkan</li>
+              <li>✓ Pembayaran penuh saat pengambilan pakaian</li>
+            </ul>
+          </div>
+
+          <p class="text-sm text-gray-600 mb-8">
+            Dengan mengklik tombol di bawah, saya menyetujui syarat dan
+            ketentuan layanan DEWI TAILOR
+          </p>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="flex justify-between gap-4">
+          <button
+            type="button"
+            id="prevBtn"
+            class="btn-secondary hidden"
+            onclick="changeStep(-1)"
+          >
+            ← Sebelumnya
+          </button>
+          <div class="flex-1"></div>
+          <button
+            type="button"
+            id="nextBtn"
+            class="btn-primary"
+            onclick="changeStep(1)"
+          >
+            Selanjutnya →
+          </button>
+          <button
+            type="submit"
+            id="submitBtn"
+            class="btn-primary hidden"
+            onclick="submitForm(event)"
+          >
+            Kirim Pre-Order ✓
+          </button>
+        </div>
+      </form>
+
+      <!-- SUCCESS MESSAGE -->
+      <div
+        id="successMessage"
+        class="hidden bg-green-50 border border-green-200 rounded-lg p-8 text-center"
+      >
+        <div class="text-5xl mb-4">✓</div>
+        <h2 class="heading text-3xl mb-4" style="color: #10b981">
+          Pre-Order Berhasil!
+        </h2>
+        <div id="nomor-antrian-result" class="mb-6"></div>
+        <p class="text-gray-700 mb-4">
+          Terima kasih telah memilih DEWI TAILOR. Kami akan mengkonfirmasi
+          jadwal fitting Anda melalui WhatsApp.
+        </p>
+        <a href="index.html" class="btn-primary inline-block"
+          >← Kembali ke Beranda</a
+        >
+      </div>
+    </main>
+
+    <script>
+      const API_URL = "http://localhost:3000";
+      let currentStep = 1;
+      const totalSteps = 4;
+
+      function changeStep(direction) {
+        const form = document.getElementById("preorderForm");
+
+        if (direction === 1 && !validateStep(currentStep)) {
+          return;
+        }
+
+        if (direction === 1) {
+          if (currentStep < totalSteps) {
+            currentStep++;
+          }
+        } else if (direction === -1 && currentStep > 1) {
+          currentStep--;
+        }
+
+        updateFormDisplay();
+      }
+
+      function updateFormDisplay() {
+        // Hide all steps
+        document.querySelectorAll(".form-step").forEach((step) => {
+          step.classList.add("hidden");
+        });
+
+        // Show current step
+        document
+          .querySelector(`.form-step[data-step="${currentStep}"]`)
+          .classList.remove("hidden");
+
+        // Update progress bar
+        const progress = (currentStep / totalSteps) * 100;
+        document.getElementById("progress-bar").style.width = progress + "%";
+
+        // Update step indicators
+        document
+          .querySelectorAll(".step-indicator")
+          .forEach((indicator, index) => {
+            const step = index + 1;
+            indicator.classList.remove("step-active", "step-inactive");
+            indicator.classList.add(
+              step <= currentStep ? "step-active" : "step-inactive",
+            );
+          });
+
+        // Update buttons
+        document
+          .getElementById("prevBtn")
+          .classList.toggle("hidden", currentStep === 1);
+        document
+          .getElementById("nextBtn")
+          .classList.toggle("hidden", currentStep === totalSteps);
+        document
+          .getElementById("submitBtn")
+          .classList.toggle("hidden", currentStep !== totalSteps);
+
+        // Show ringkasan on step 4
+        if (currentStep === 4) {
+          displayRingkasan();
+        }
+      }
+
+      function validateStep(step) {
+        if (step === 1) {
+          const kategori = document.querySelector(
+            'input[name="kategori"]:checked',
+          );
+          const jenis = document.getElementById("jenisPakaian").value;
+          if (!kategori || !jenis) {
+            alert("Silakan pilih kategori dan jenis pakaian");
+            return false;
+          }
+        } else if (step === 2) {
+          const deskripsi = document.getElementById("deskripsi").value;
+          const jumlah = document.getElementById("jumlah").value;
+          if (!deskripsi || !jumlah) {
+            alert("Silakan isi deskripsi dan jumlah pakaian");
+            return false;
+          }
+        } else if (step === 3) {
+          const nama = document.getElementById("nama").value;
+          const noHp = document.getElementById("noHp").value;
+          const tanggal = document.getElementById("tanggalFitting").value;
+          const metode = document.getElementById("metode").value;
+          if (!nama || !noHp || !tanggal || !metode) {
+            alert("Silakan isi semua data pelanggan");
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function displayRingkasan() {
+        const kategori = document.querySelector(
+          'input[name="kategori"]:checked',
+        ).value;
+        const jenis = document.getElementById("jenisPakaian").value;
+        const deskripsi = document.getElementById("deskripsi").value;
+        const keterangan = document.getElementById("keterangan").value;
+        const jumlah = document.getElementById("jumlah").value;
+        const nama = document.getElementById("nama").value;
+        const noHp = document.getElementById("noHp").value;
+        const tanggal = document.getElementById("tanggalFitting").value;
+        const metode = document.getElementById("metode").value;
+
+        const tanggalFormatted = new Date(tanggal).toLocaleDateString("id-ID", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+
+        document.getElementById("ringasan").innerHTML = `
+                <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4">
+                    <h3 class="font-bold mb-2">Jenis Pakaian</h3>
+                    <p><span class="text-gray-600">Kategori:</span> <strong>${kategori}</strong></p>
+                    <p><span class="text-gray-600">Jenis:</span> <strong>${jenis}</strong></p>
+                    <p><span class="text-gray-600">Jumlah:</span> <strong>${jumlah} pcs</strong></p>
+                </div>
+
+                <div class="border-l-4" style="border-left-color: #9B6B7A; background-color: rgba(155, 107, 122, 0.05);" class="p-4">
+                    <h3 class="font-bold mb-2">Deskripsi Model</h3>
+                    <p class="text-gray-700">${deskripsi}</p>
+                    ${keterangan ? `<p class="text-gray-600 mt-2"><strong>Catatan:</strong> ${keterangan}</p>` : ""}
+                </div>
+
+                <div class="border-l-4" style="border-left-color: #C9A84C; background-color: rgba(201, 168, 76, 0.05);" class="p-4">
+                    <h3 class="font-bold mb-2">Data Pelanggan</h3>
+                    <p><span class="text-gray-600">Nama:</span> <strong>${nama}</strong></p>
+                    <p><span class="text-gray-600">No. HP:</span> <strong>${noHp}</strong></p>
+                    <p><span class="text-gray-600">Jadwal Fitting:</span> <strong>${tanggalFormatted}</strong></p>
+                    <p><span class="text-gray-600">Metode Pembayaran:</span> <strong>${metode}</strong></p>
+                </div>
+            `;
+      }
+
+      async function submitForm(e) {
+        e.preventDefault();
+
+        if (!validateStep(3)) {
+          return;
+        }
+
+        try {
+          const formData = {
+            nama: document.getElementById("nama").value,
+            noHp: document.getElementById("noHp").value,
+            jenis: document.getElementById("jenisPakaian").value,
+            deskripsi: document.getElementById("deskripsi").value,
+            keterangan: document.getElementById("keterangan").value,
+            jumlah: parseInt(document.getElementById("jumlah").value),
+            tanggalFitting: document.getElementById("tanggalFitting").value,
+            metode: document.getElementById("metode").value,
+          };
+
+          const response = await fetch(`${API_URL}/api/orders`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data.error || "Gagal mengirim pre-order");
+          }
+
+          // Hide form and show success
+          document.getElementById("preorderForm").classList.add("hidden");
+          document
+            .getElementById("progress-bar")
+            .parentElement.parentElement.classList.add("hidden");
+
+          const successMsg = document.getElementById("successMessage");
+          successMsg.classList.remove("hidden");
+
+          document.getElementById("nomor-antrian-result").innerHTML = `
+                <div class="bg-white border-2 border-green-400 rounded-lg p-6 mb-6">
+                    <p class="text-sm text-gray-600 mb-2">Nomor Antrian Anda:</p>
+                    <p class="text-5xl font-bold" style="color: #10B981;">${data.noAntrian}</p>
+                    <p class="text-sm text-gray-600 mt-2">Simpan nomor ini untuk tracking status pesanan</p>
+                </div>
+                <div class="text-left text-sm space-y-2">
+                    <p><strong>📝 Nama:</strong> ${formData.nama}</p>
+                    <p><strong>👗 Jenis:</strong> ${formData.jenis}</p>
+                    <p><strong>📅 Jadwal Fitting:</strong> ${formData.tanggalFitting}</p>
+                    <p><strong>💬 Kami akan menghubungi Anda via WhatsApp untuk konfirmasi</strong></p>
+                </div>
+            `;
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Terjadi kesalahan: " + error.message);
+        }
+      }
+
+      // Initialize on load
+      document.addEventListener("DOMContentLoaded", () => {
+        updateFormDisplay();
+      });
+    </script>
+  </body>
+</html>

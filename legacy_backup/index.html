@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEWI TAILOR - Jahitan Presisi, Keanggunan yang Berbicara</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+      }
+      h1,
+      h2,
+      h3,
+      .heading {
+        font-family: "Playfair Display", serif;
+      }
+      .hero-bg {
+        background: linear-gradient(135deg, #9b6b7a 0%, #c9a84c 100%);
+      }
+      .card-gallery {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .card-gallery:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 10px 30px rgba(155, 107, 122, 0.15);
+      }
+      .btn-primary {
+        background-color: #9b6b7a;
+        color: white;
+        border-radius: 6px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        background-color: #7d5563;
+        box-shadow: 0 4px 12px rgba(155, 107, 122, 0.3);
+      }
+      .btn-secondary {
+        background-color: #c9a84c;
+        color: #2d1b1b;
+        border-radius: 6px;
+        padding: 12px 28px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-secondary:hover {
+        background-color: #b89535;
+      }
+      .heading-main {
+        color: #2d1b1b;
+        font-size: 3.5rem;
+        font-weight: 900;
+        letter-spacing: -2px;
+      }
+      @media (max-width: 768px) {
+        .heading-main {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: #fdf8f5; color: #2d1b1b">
+    <!-- HEADER & NAVIGASI -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <div class="text-2xl font-bold heading" style="color: #9b6b7a">
+          DEWI TAILOR
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex gap-8 items-center">
+          <a href="index.html" class="font-medium hover:text-yellow-600"
+            >Beranda</a
+          >
+          <a href="#galeri" class="font-medium hover:text-yellow-600">Galeri</a>
+          <a href="#layanan" class="font-medium hover:text-yellow-600"
+            >Layanan</a
+          >
+          <a href="antrian.html" class="font-medium hover:text-yellow-600"
+            >Antrian</a
+          >
+          <a href="cek-status.html" class="font-medium hover:text-yellow-600"
+            >Cek Order</a
+          >
+          <a href="form-preorder.html" class="btn-primary">Pre-Order</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden" onclick="toggleMobileMenu()">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-white border-t border-gray-200"
+      >
+        <div class="px-4 py-4 space-y-3">
+          <a href="index.html" class="block py-2 font-medium">Beranda</a>
+          <a href="#galeri" class="block py-2 font-medium">Galeri</a>
+          <a href="#layanan" class="block py-2 font-medium">Layanan</a>
+          <a href="antrian.html" class="block py-2 font-medium">Antrian</a>
+          <a href="cek-status.html" class="block py-2 font-medium">Cek Order</a>
+          <a href="form-preorder.html" class="block btn-primary text-center"
+            >Pre-Order</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section
+      class="hero-bg text-white py-20 md:py-32 text-center relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 opacity-20"
+        style="
+          background: url(&quot;data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><path d=%22M0,50 Q25,25 50,50 T100,50%22 stroke=%22white%22 fill=%22none%22/></svg>&quot;);
+        "
+      ></div>
+      <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <h1 class="heading-main mb-4">DEWI TAILOR</h1>
+        <p class="text-xl md:text-2xl font-light mb-8">
+          Jahitan Presisi, Keanggunan yang Berbicara
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="form-preorder.html"
+            class="btn-secondary text-lg font-semibold"
+            >Pre-Order Sekarang</a
+          >
+          <a href="#galeri" class="btn-primary text-lg font-semibold"
+            >Lihat Galeri</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- KEUNGGULAN LAYANAN -->
+    <section class="py-16 md:py-24 max-w-7xl mx-auto px-4">
+      <h2
+        class="heading text-3xl md:text-4xl text-center mb-16"
+        style="color: #9b6b7a"
+      >
+        Keunggulan Layanan Kami
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div
+          class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <div class="text-5xl mb-4">✂️</div>
+          <h3 class="text-xl font-bold mb-3" style="color: #9b6b7a">
+            Khusus Wanita & Anak Perempuan
+          </h3>
+          <p class="text-gray-700">
+            Kami hanya melayani pakaian wanita dewasa dan anak perempuan dengan
+            keahlian spesialis yang mendalam.
+          </p>
+        </div>
+        <!-- Card 2 -->
+        <div
+          class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <div class="text-5xl mb-4">📏</div>
+          <h3 class="text-xl font-bold mb-3" style="color: #9b6b7a">
+            Fitting Langsung di Tempat
+          </h3>
+          <p class="text-gray-700">
+            Setiap pelanggan wajib datang untuk pengukuran presisi demi hasil
+            jahitan yang sempurna dan nyaman.
+          </p>
+        </div>
+        <!-- Card 3 -->
+        <div
+          class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition"
+        >
+          <div class="text-5xl mb-4">🧵</div>
+          <h3 class="text-xl font-bold mb-3" style="color: #9b6b7a">
+            Bahan dari Pelanggan
+          </h3>
+          <p class="text-gray-700">
+            Anda bebas memilih bahan favorit, kami fokus pada kualitas jahitan
+            terbaik dan detail sempurna.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI HASIL JAHITAN -->
+    <section id="galeri" class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2
+          class="heading text-3xl md:text-4xl text-center mb-16"
+          style="color: #9b6b7a"
+        >
+          Galeri Hasil Jahitan
+        </h2>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          id="gallery-grid"
+        >
+          <!-- Gallery items akan ditambahkan via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- LAYANAN & ESTIMASI HARGA -->
+    <section id="layanan" class="py-16 md:py-24 max-w-7xl mx-auto px-4">
+      <h2
+        class="heading text-3xl md:text-4xl text-center mb-16"
+        style="color: #9b6b7a"
+      >
+        Layanan & Estimasi Harga
+      </h2>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse text-sm md:text-base">
+          <thead>
+            <tr style="background-color: #9b6b7a; color: white">
+              <th
+                class="border border-gray-300 px-4 py-3 text-left font-semibold"
+              >
+                Jenis Pakaian
+              </th>
+              <th
+                class="border border-gray-300 px-4 py-3 text-left font-semibold"
+              >
+                Kategori
+              </th>
+              <th
+                class="border border-gray-300 px-4 py-3 text-left font-semibold"
+              >
+                Estimasi Ongkos Jahit
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Blouse / Atasan</td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 80.000 – 150.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">
+                Rok / Celana Wanita
+              </td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 75.000 – 120.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Dress Casual</td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 120.000 – 200.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Dress Pesta</td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 200.000 – 400.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Gamis</td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 150.000 – 300.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Kebaya</td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 250.000 – 500.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Jumpsuit</td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 150.000 – 250.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Outer / Cardigan</td>
+              <td class="border border-gray-300 px-4 py-3">Wanita Dewasa</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 100.000 – 180.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Dress Anak</td>
+              <td class="border border-gray-300 px-4 py-3">Anak Perempuan</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 75.000 – 150.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Gamis Anak</td>
+              <td class="border border-gray-300 px-4 py-3">Anak Perempuan</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 100.000 – 200.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Rok Anak</td>
+              <td class="border border-gray-300 px-4 py-3">Anak Perempuan</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 60.000 – 100.000
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50">
+              <td class="border border-gray-300 px-4 py-3">Baju Pesta Anak</td>
+              <td class="border border-gray-300 px-4 py-3">Anak Perempuan</td>
+              <td class="border border-gray-300 px-4 py-3">
+                Rp 100.000 – 200.000
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-center text-gray-600 mt-6 font-medium">
+        ⚠️ Harga final ditentukan setelah fitting. Semua bahan dari pelanggan.
+      </p>
+    </section>
+
+    <!-- CARA PESAN 4 LANGKAH -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2
+          class="heading text-3xl md:text-4xl text-center mb-16"
+          style="color: #9b6b7a"
+        >
+          Cara Pesan – 4 Langkah Mudah
+        </h2>
+        <div class="grid md:grid-cols-4 gap-6">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4"
+              style="background-color: #9b6b7a"
+            >
+              1
+            </div>
+            <h3 class="font-bold mb-2">Pre-Order Online</h3>
+            <p class="text-sm text-gray-700">Isi form pre-order di website</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4"
+              style="background-color: #c9a84c"
+            >
+              2
+            </div>
+            <h3 class="font-bold mb-2">Datang Fitting</h3>
+            <p class="text-sm text-gray-700">Sesuai jadwal & serahkan kain</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4"
+              style="background-color: #9b6b7a"
+            >
+              3
+            </div>
+            <h3 class="font-bold mb-2">Proses Jahit</h3>
+            <p class="text-sm text-gray-700">Pantau status antrian online</p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4"
+              style="background-color: #c9a84c"
+            >
+              4
+            </div>
+            <h3 class="font-bold mb-2">Ambil & Bayar</h3>
+            <p class="text-sm text-gray-700">Bayar tunai/non-tunai</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section class="py-16 md:py-24 max-w-7xl mx-auto px-4">
+      <h2
+        class="heading text-3xl md:text-4xl text-center mb-16"
+        style="color: #9b6b7a"
+      >
+        Apa Kata Pelanggan Kami
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div
+          class="bg-white p-8 rounded-lg shadow-md border-l-4"
+          style="border-left-color: #9b6b7a"
+        >
+          <div class="text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-700 mb-4 italic">
+            "Hasil jahitan sangat sempurna! Cocok banget dengan ukuran tubuh
+            saya. Pelayanannya profesional dan ramah."
+          </p>
+          <p class="font-bold">Ibu Siti Rahma</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-md border-l-4"
+          style="border-left-color: #9b6b7a"
+        >
+          <div class="text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-700 mb-4 italic">
+            "Dress pesta yang saya pesan sangat elegan dan detail bordir sangat
+            rapih. Highly recommended!"
+          </p>
+          <p class="font-bold">Sinta Kusuma</p>
+        </div>
+        <div
+          class="bg-white p-8 rounded-lg shadow-md border-l-4"
+          style="border-left-color: #9b6b7a"
+        >
+          <div class="text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
+          <p class="text-gray-700 mb-4 italic">
+            "Bisa tracking status antrian online sangat membantu. Kualitas
+            jahitan seperti branded! Terima kasih Dewi 💕"
+          </p>
+          <p class="font-bold">Dwi Ningsih</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFO & KONTAK -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2
+          class="heading text-3xl md:text-4xl text-center mb-12"
+          style="color: #9b6b7a"
+        >
+          Hubungi Kami
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="font-bold text-lg mb-6">Alamat & Info</h3>
+            <div class="space-y-4">
+              <p>
+                <span class="font-bold">📍 Alamat:</span><br />Jl. Merdeka No.
+                45, Bandung, Jawa Barat 40123
+              </p>
+              <p>
+                <span class="font-bold">⏰ Jam Operasional:</span><br />Senin -
+                Jumat: 10:00 - 17:00<br />Sabtu: 10:00 - 16:00<br />Minggu:
+                Tutup
+              </p>
+              <p>
+                <span class="font-bold">📱 Telepon:</span><br />(0274) 555-1234
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-6">Hubungi Via WhatsApp</h3>
+            <a
+              href="https://wa.me/6285123456789"
+              target="_blank"
+              class="btn-primary inline-flex items-center gap-2 text-lg"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371 0-.57 0-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.867 1.167l-.348.214-.361-.056c-1.186-.23-2.336-.471-3.428-.881l-.664.381c-.639.382-.934.682-.934 1.023 0 .678.316 1.366 1.01 2.059.194.194.391.417.547.652l.305.459c.206.31.411.618.513.936.129.394.06.913-.29 1.441-.08.13-.166.248-.24.358-.318.474-.648.972-.818 1.402-.182.456-.145 1.026.2 1.491.349.468.954.626 1.61.8.2.05.406.1.616.151 1.123.27 2.851.642 4.15.642 1.568 0 2.764-.565 3.468-1.682.701-1.12 1.057-3.07.924-4.885-.134-1.815-.85-3.178-1.906-3.763-.521-.289-1.268-.433-2.102-.433z"
+                />
+              </svg>
+              Chat WhatsApp
+            </a>
+            <div class="mt-6">
+              <p class="font-bold mb-3">Media Sosial:</p>
+              <div class="flex gap-4">
+                <a href="#" class="text-pink-600 font-bold">📷 Instagram</a>
+                <a href="#" class="text-blue-600 font-bold">f Facebook</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="background-color: #2d1b1b; color: white" class="py-12">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="font-semibold mb-2">© 2026 DEWI TAILOR</p>
+        <p class="text-sm text-gray-300">
+          Jahitan Presisi, Keanggunan yang Berbicara
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Initialize gallery
+      function initGallery() {
+        const galleryItems = [
+          {
+            id: 1,
+            name: "Kebaya Kutubaru Modern",
+            category: "Kebaya",
+            description:
+              "Potongan ramping elegan dengan detail kerah kutubaru klasik. Cocok untuk wisuda, lamaran, dan pernikahan. Jahitan tangan pada detail bordir.",
+            price: "Rp 250.000 – 400.000",
+            image:
+              "https://images.unsplash.com/photo-1608408669695-5fb165289e7a?w=400&h=500&fit=crop",
+          },
+          {
+            id: 2,
+            name: "Dress Pesta A-Line",
+            category: "Dress Pesta",
+            description:
+              "Siluet A-line yang memanjangkan tubuh dengan detail pinggang manis. Cocok untuk pesta pernikahan, kondangan, dan acara formal.",
+            price: "Rp 200.000 – 350.000",
+            image:
+              "https://images.unsplash.com/photo-1559631122-cc4ea2fed81d?w=400&h=500&fit=crop",
+          },
+          {
+            id: 3,
+            name: "Gamis Syar'i Elegan",
+            category: "Gamis",
+            description:
+              "Potongan longgar namun tetap elegan dengan detail kancing depan dan lengan bishop. Nyaman untuk harian maupun kondangan.",
+            price: "Rp 150.000 – 250.000",
+            image:
+              "https://images.unsplash.com/photo-1597202924378-e9b0f85dc773?w=400&h=500&fit=crop",
+          },
+          {
+            id: 4,
+            name: "Blouse Casual Modern",
+            category: "Blouse",
+            description:
+              "Kerah V clean dengan detail plisket di bagian dada. Cocok untuk kerja maupun hangout. Tersedia pilihan lengan panjang dan pendek.",
+            price: "Rp 80.000 – 130.000",
+            image:
+              "https://images.unsplash.com/photo-1546231690-4e1b9ff42d30?w=400&h=500&fit=crop",
+          },
+          {
+            id: 5,
+            name: "Rok Lipit Formal",
+            category: "Rok",
+            description:
+              "Rok midi dengan detail lipit rapi, kesan profesional dan anggun. Sangat cocok untuk busana kerja dan acara semi-formal.",
+            price: "Rp 90.000 – 130.000",
+            image:
+              "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400&h=500&fit=crop",
+          },
+          {
+            id: 6,
+            name: "Dress Pesta Anak",
+            category: "Dress Anak",
+            description:
+              "Model princess dengan rok mengembang dan pita pinggang lebar. Tampilan mewah untuk ulang tahun, wisuda TK/SD, dan acara keluarga.",
+            price: "Rp 100.000 – 180.000",
+            image:
+              "https://images.unsplash.com/photo-1587360349688-65f32e9b3e0e?w=400&h=500&fit=crop",
+          },
+          {
+            id: 7,
+            name: "Gamis Anak Syar'i",
+            category: "Gamis Anak",
+            description:
+              "Gamis anak longgar dengan warna cerah. Nyaman dipakai beraktivitas dan tampil anggun untuk acara keagamaan.",
+            price: "Rp 100.000 – 170.000",
+            image:
+              "https://images.unsplash.com/photo-1595587435533-0f12304f67e6?w=400&h=500&fit=crop",
+          },
+          {
+            id: 8,
+            name: "Jumpsuit Wanita",
+            category: "Jumpsuit",
+            description:
+              "One-piece modern dengan potongan wide-leg yang trendi. Cocok untuk kasual hingga semi-formal, kesan chic & stylish.",
+            price: "Rp 150.000 – 220.000",
+            image:
+              "https://images.unsplash.com/photo-1515207736741-69f00f2085bc?w=400&h=500&fit=crop",
+          },
+          {
+            id: 9,
+            name: "Rok Anak Flare",
+            category: "Rok Anak",
+            description:
+              "Rok flare dengan lapisan inner dan detail renda di ujung. Aktif & nyaman untuk anak-anak.",
+            price: "Rp 75.000 – 120.000",
+            image:
+              "https://images.unsplash.com/photo-1516762689617-e1cffff0e2e9?w=400&h=500&fit=crop",
+          },
+        ];
+
+        const grid = document.getElementById("gallery-grid");
+        galleryItems.forEach((item) => {
+          const card = document.createElement("div");
+          card.className =
+            "card-gallery bg-white rounded-lg overflow-hidden shadow-md";
+          card.innerHTML = `
+                    <div class="relative h-64 overflow-hidden bg-gray-200">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs font-semibold" style="color: #9B6B7A;">
+                            ${item.category}
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg mb-2" style="color: #9B6B7A;">${item.name}</h3>
+                        <p class="text-gray-700 text-sm mb-4">${item.description}</p>
+                        <p class="font-semibold text-lg" style="color: #C9A84C;">${item.price}</p>
+                    </div>
+                `;
+          grid.appendChild(card);
+        });
+
+        // Save to localStorage for admin gallery
+        localStorage.setItem("dewiGallery", JSON.stringify(galleryItems));
+      }
+
+      function toggleMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        menu.classList.toggle("hidden");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadGalleryFromAPI();
+      });
+
+      // Load gallery dari API
+      async function loadGalleryFromAPI() {
+        try {
+          const response = await fetch("http://localhost:3000/api/gallery");
+          const items = await response.json();
+
+          const grid = document.getElementById("gallery-grid");
+          grid.innerHTML = ""; // Clear existing items
+
+          items.forEach((item) => {
+            const card = document.createElement("div");
+            card.className =
+              "card-gallery bg-white rounded-lg overflow-hidden shadow-md";
+            card.innerHTML = `
+              <div class="relative h-64 overflow-hidden bg-gray-200">
+                <img src="${item.image}" alt="${item.nama}" class="w-full h-full object-cover">
+                <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs font-semibold" style="color: #9B6B7A;">
+                  ${item.kategori}
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="font-bold text-lg mb-2" style="color: #9B6B7A;">${item.nama}</h3>
+                <p class="text-gray-700 text-sm mb-4">${item.deskripsi}</p>
+                <p class="font-semibold text-lg" style="color: #C9A84C;">${item.harga}</p>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Error loading gallery:", error);
+          console.log(
+            "⚠️ Backend tidak berjalan. Pastikan sudah menjalankan: npm start di folder backend",
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

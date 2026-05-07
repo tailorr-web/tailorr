@@ -1,0 +1,1033 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Admin - DEWI TAILOR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Inter", sans-serif;
+      }
+      body {
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      .sidebar {
+        background-color: #1e293b;
+        border-right: 1px solid #334155;
+      }
+      .main-content {
+        background-color: #0f172a;
+      }
+      .card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 8px;
+      }
+      .card-hover:hover {
+        background-color: #334155;
+      }
+      .btn-primary {
+        background-color: #06b6d4;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        background-color: #0891b2;
+      }
+      .btn-danger {
+        background-color: #ef4444;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-danger:hover {
+        background-color: #dc2626;
+      }
+      .btn-secondary {
+        background-color: #475569;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-secondary:hover {
+        background-color: #64748b;
+      }
+      .status-badge {
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+      .status-menunggu {
+        background-color: rgba(245, 158, 11, 0.2);
+        color: #fbbf24;
+      }
+      .status-dikerjakan {
+        background-color: rgba(6, 182, 212, 0.2);
+        color: #22d3ee;
+      }
+      .status-fitting {
+        background-color: rgba(249, 115, 22, 0.2);
+        color: #fb923c;
+      }
+      .status-selesai {
+        background-color: rgba(16, 185, 129, 0.2);
+        color: #6ee7b7;
+      }
+      .bayar-lunas {
+        background-color: rgba(34, 197, 94, 0.2);
+        color: #86efac;
+      }
+      .bayar-belum {
+        background-color: rgba(239, 68, 68, 0.2);
+        color: #fca5a5;
+      }
+      .input-admin {
+        background-color: #0f172a;
+        border: 1px solid #334155;
+        color: #f8fafc;
+        border-radius: 6px;
+        padding: 10px 12px;
+      }
+      .input-admin:focus {
+        border-color: #06b6d4;
+        outline: none;
+      }
+      .menu-active {
+        background-color: #0891b2;
+        border-left: 3px solid #06b6d4;
+      }
+      .modal-overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      .modal {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+      }
+      .table-row {
+        border-bottom: 1px solid #334155;
+      }
+      .table-row:hover {
+        background-color: rgba(6, 182, 212, 0.05);
+      }
+      .section-hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- LOGIN PAGE -->
+    <div id="loginPage" class="flex items-center justify-center min-h-screen">
+      <div class="card p-8 w-full max-w-md">
+        <h1 class="text-3xl font-bold mb-8 text-center text-cyan-400">
+          DEWI TAILOR
+        </h1>
+        <p class="text-center text-gray-400 mb-8">Admin Dashboard</p>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="input-admin w-full"
+              placeholder="Masukkan username"
+              required
+            />
+          </div>
+          <div class="mb-8">
+            <label class="block text-sm font-semibold mb-2">Password</label>
+            <div class="relative">
+              <input
+                type="password"
+                id="password"
+                class="input-admin w-full"
+                placeholder="Masukkan password"
+                required
+              />
+              <button
+                type="button"
+                onclick="togglePassword()"
+                class="absolute right-3 top-3 text-gray-400 hover:text-cyan-400"
+              >
+                👁️
+              </button>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn-primary w-full text-lg font-semibold"
+          >
+            Masuk
+          </button>
+        </form>
+
+        <div class="mt-8 p-4 bg-gray-800 rounded text-sm text-gray-400">
+          <p class="font-semibold mb-2">Demo Credentials:</p>
+          <p>Username: <strong>dewi</strong></p>
+          <p>Password: <strong>dewi123</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="flex hidden min-h-screen">
+      <!-- SIDEBAR -->
+      <aside
+        class="sidebar w-64 fixed left-0 top-0 bottom-0 overflow-y-auto hidden lg:block"
+      >
+        <div class="p-6 border-b border-gray-700">
+          <h1 class="text-xl font-bold text-cyan-400">DEWI TAILOR</h1>
+          <p class="text-xs text-gray-400 mt-1">Admin Panel</p>
+        </div>
+        <nav class="p-4">
+          <div
+            class="menu-item"
+            onclick="switchTab('overview')"
+            style="cursor: pointer"
+          >
+            <div
+              class="px-4 py-3 rounded hover:bg-gray-700 transition menu-active"
+              id="menu-overview"
+            >
+              📊 Overview
+            </div>
+          </div>
+          <div
+            class="menu-item"
+            onclick="switchTab('orders')"
+            style="cursor: pointer"
+          >
+            <div
+              class="px-4 py-3 rounded hover:bg-gray-700 transition"
+              id="menu-orders"
+            >
+              📋 Manajemen Order
+            </div>
+          </div>
+          <div
+            class="menu-item"
+            onclick="switchTab('gallery')"
+            style="cursor: pointer"
+          >
+            <div
+              class="px-4 py-3 rounded hover:bg-gray-700 transition"
+              id="menu-gallery"
+            >
+              🖼️ Kelola Galeri
+            </div>
+          </div>
+          <div class="border-t border-gray-700 my-4"></div>
+          <button
+            onclick="handleLogout()"
+            class="w-full px-4 py-3 rounded text-red-400 hover:bg-red-900/20 transition text-left font-semibold"
+          >
+            🚪 Logout
+          </button>
+        </nav>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main class="main-content flex-1 lg:ml-64">
+        <!-- HEADER -->
+        <header
+          class="border-b border-gray-700 p-6 flex justify-between items-center sticky top-0 z-40"
+          style="background-color: #1e293b"
+        >
+          <div>
+            <h2 class="text-2xl font-bold" id="pageTitle">Overview</h2>
+            <p class="text-gray-400 text-sm mt-1" id="pageSubtitle">
+              Pantau statistik pesanan
+            </p>
+          </div>
+          <div class="flex items-center gap-4">
+            <span class="text-sm text-gray-400"
+              >Hai, <strong id="adminName">Dewi</strong></span
+            >
+            <button
+              onclick="handleLogout()"
+              class="lg:hidden btn-danger px-4 py-2"
+            >
+              Logout
+            </button>
+          </div>
+        </header>
+
+        <!-- CONTENT AREA -->
+        <div class="p-6">
+          <!-- OVERVIEW TAB -->
+          <div id="overview-section" class="section">
+            <div class="grid md:grid-cols-4 gap-6 mb-8">
+              <!-- Card 1: Total Order Aktif -->
+              <div class="card p-6 card-hover">
+                <p class="text-gray-400 text-sm font-semibold mb-2">
+                  Total Order Aktif
+                </p>
+                <p class="text-4xl font-bold text-cyan-400" id="total-aktif">
+                  0
+                </p>
+                <p class="text-xs text-gray-500 mt-2">
+                  Pesanan yang belum selesai
+                </p>
+              </div>
+
+              <!-- Card 2: Selesai Hari Ini -->
+              <div class="card p-6 card-hover">
+                <p class="text-gray-400 text-sm font-semibold mb-2">
+                  Selesai Hari Ini
+                </p>
+                <p
+                  class="text-4xl font-bold text-emerald-400"
+                  id="selesai-hari-ini"
+                >
+                  0
+                </p>
+                <p class="text-xs text-gray-500 mt-2">
+                  Status berubah ke Selesai
+                </p>
+              </div>
+
+              <!-- Card 3: Deadline Dekat -->
+              <div class="card p-6 card-hover">
+                <p class="text-gray-400 text-sm font-semibold mb-2">
+                  Deadline Dekat
+                </p>
+                <p
+                  class="text-4xl font-bold text-orange-400"
+                  id="deadline-dekat"
+                >
+                  0
+                </p>
+                <p class="text-xs text-gray-500 mt-2">Estimasi <= 2 hari</p>
+              </div>
+
+              <!-- Card 4: Belum Ada Estimasi -->
+              <div class="card p-6 card-hover">
+                <p class="text-gray-400 text-sm font-semibold mb-2">
+                  Belum Ada Estimasi
+                </p>
+                <p class="text-4xl font-bold text-red-400" id="belum-estimasi">
+                  0
+                </p>
+                <p class="text-xs text-gray-500 mt-2">Perlu input estimasi</p>
+              </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card p-6">
+              <h3 class="text-lg font-bold mb-4">⚡ Aksi Cepat</h3>
+              <div class="space-y-2">
+                <button
+                  onclick="switchTab('orders')"
+                  class="btn-primary w-full text-left"
+                >
+                  → Lihat Semua Order
+                </button>
+                <button
+                  onclick="switchTab('gallery')"
+                  class="btn-secondary w-full text-left"
+                >
+                  → Kelola Galeri
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ORDERS TAB -->
+          <div id="orders-section" class="section section-hidden">
+            <!-- FILTER & SEARCH -->
+            <div class="card p-6 mb-6">
+              <h3 class="text-lg font-bold mb-4">Filter & Pencarian</h3>
+              <div class="grid md:grid-cols-4 gap-4">
+                <div>
+                  <label class="block text-sm text-gray-400 mb-2"
+                    >Cari Nama</label
+                  >
+                  <input
+                    type="text"
+                    id="filterNama"
+                    class="input-admin w-full"
+                    placeholder="Nama pelanggan"
+                    onkeyup="filterOrders()"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm text-gray-400 mb-2">Status</label>
+                  <select
+                    id="filterStatus"
+                    class="input-admin w-full"
+                    onchange="filterOrders()"
+                  >
+                    <option value="">-- Semua Status --</option>
+                    <option value="Menunggu">Menunggu</option>
+                    <option value="Dikerjakan">Sedang Dikerjakan</option>
+                    <option value="Fitting">Fitting/Revisi</option>
+                    <option value="Selesai">Selesai</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm text-gray-400 mb-2"
+                    >Pembayaran</label
+                  >
+                  <select
+                    id="filterBayar"
+                    class="input-admin w-full"
+                    onchange="filterOrders()"
+                  >
+                    <option value="">-- Semua --</option>
+                    <option value="Belum">Belum Lunas</option>
+                    <option value="Lunas">Lunas</option>
+                  </select>
+                </div>
+                <div class="flex items-end">
+                  <button onclick="resetFilters()" class="btn-secondary w-full">
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- ORDERS TABLE -->
+            <div class="card overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead style="background-color: rgba(6, 182, 212, 0.1)">
+                    <tr>
+                      <th class="px-6 py-3 text-left font-semibold">
+                        No Antrian
+                      </th>
+                      <th class="px-6 py-3 text-left font-semibold">Nama</th>
+                      <th class="px-6 py-3 text-left font-semibold">Jenis</th>
+                      <th class="px-6 py-3 text-left font-semibold">
+                        Tgl Masuk
+                      </th>
+                      <th class="px-6 py-3 text-left font-semibold">
+                        Estimasi Selesai
+                      </th>
+                      <th class="px-6 py-3 text-left font-semibold">Status</th>
+                      <th class="px-6 py-3 text-left font-semibold">Bayar</th>
+                      <th class="px-6 py-3 text-left font-semibold">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="ordersTableBody">
+                    <!-- Orders akan dimuat di sini -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- MOBILE VIEW -->
+            <div id="ordersCardsMobile" class="md:hidden space-y-4">
+              <!-- Cards untuk mobile -->
+            </div>
+          </div>
+
+          <!-- GALLERY TAB -->
+          <div id="gallery-section" class="section section-hidden">
+            <div class="mb-6">
+              <button onclick="openAddGalleryModal()" class="btn-primary">
+                + Tambah Item Galeri
+              </button>
+            </div>
+
+            <div
+              class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              id="galleryGrid"
+            >
+              <!-- Gallery items akan dimuat di sini -->
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- MODAL EDIT ORDER -->
+    <div
+      id="editOrderModal"
+      class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+    >
+      <div class="modal p-8 w-full max-w-2xl max-h-96 overflow-y-auto">
+        <h2 class="text-2xl font-bold mb-6">Edit Order</h2>
+
+        <form id="editOrderForm" onsubmit="saveOrder(event)">
+          <input type="hidden" id="editOrderId" />
+
+          <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-semibold mb-2"
+                >No Antrian (Read Only)</label
+              >
+              <input
+                type="text"
+                id="editNoAntrian"
+                class="input-admin w-full"
+                readonly
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2"
+                >Nama Pelanggan</label
+              >
+              <input
+                type="text"
+                id="editNama"
+                class="input-admin w-full"
+                readonly
+              />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-semibold mb-2">Status Order</label>
+            <select id="editStatus" class="input-admin w-full">
+              <option value="Menunggu">Menunggu</option>
+              <option value="Dikerjakan">Sedang Dikerjakan</option>
+              <option value="Fitting">Fitting/Revisi</option>
+              <option value="Selesai">Selesai</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-semibold mb-2"
+              >Estimasi Selesai</label
+            >
+            <input type="date" id="editEstimasi" class="input-admin w-full" />
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Harga (Rp)</label>
+              <input
+                type="number"
+                id="editHarga"
+                class="input-admin w-full"
+                min="0"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2"
+                >Metode Pembayaran</label
+              >
+              <select id="editMetode" class="input-admin w-full">
+                <option value="Tunai">Tunai</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+                <option value="QRIS">QRIS</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-semibold mb-2"
+              >Status Pembayaran</label
+            >
+            <select id="editBayar" class="input-admin w-full">
+              <option value="Belum">Belum Lunas</option>
+              <option value="Lunas">Lunas</option>
+            </select>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Catatan untuk Pelanggan</label
+            >
+            <textarea
+              id="editCatatan"
+              class="input-admin w-full h-20"
+              placeholder="Catatan khusus atau instruksi untuk pelanggan"
+            ></textarea>
+          </div>
+
+          <div class="flex gap-4">
+            <button type="submit" class="btn-primary">Simpan Perubahan</button>
+            <button
+              type="button"
+              onclick="closeEditModal()"
+              class="btn-secondary"
+            >
+              Batal
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL TAMBAH GALERI -->
+    <div
+      id="addGalleryModal"
+      class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+    >
+      <div class="modal p-8 w-full max-w-2xl max-h-96 overflow-y-auto">
+        <h2 class="text-2xl font-bold mb-6">Tambah Item Galeri</h2>
+
+        <form id="addGalleryForm" onsubmit="saveGalleryItem(event)">
+          <div class="mb-4">
+            <label class="block text-sm font-semibold mb-2">URL Foto</label>
+            <input
+              type="url"
+              id="galleryImage"
+              class="input-admin w-full"
+              placeholder="https://..."
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-semibold mb-2">Nama Model</label>
+            <input
+              type="text"
+              id="galleryName"
+              class="input-admin w-full"
+              placeholder="Contoh: Kebaya Kutubaru Modern"
+              required
+            />
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-semibold mb-2">Kategori</label>
+            <select id="galleryCategory" class="input-admin w-full" required>
+              <option value="">-- Pilih Kategori --</option>
+              <option value="Kebaya">Kebaya</option>
+              <option value="Dress Pesta">Dress Pesta</option>
+              <option value="Gamis">Gamis</option>
+              <option value="Blouse">Blouse</option>
+              <option value="Rok">Rok</option>
+              <option value="Dress Anak">Dress Anak</option>
+              <option value="Gamis Anak">Gamis Anak</option>
+              <option value="Jumpsuit">Jumpsuit</option>
+              <option value="Rok Anak">Rok Anak</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm font-semibold mb-2">Deskripsi</label>
+            <textarea
+              id="galleryDescription"
+              class="input-admin w-full h-20"
+              placeholder="Deskripsi lengkap model dan detail"
+              required
+            ></textarea>
+          </div>
+
+          <div class="mb-6">
+            <label class="block text-sm font-semibold mb-2"
+              >Estimasi Harga</label
+            >
+            <input
+              type="text"
+              id="galleryPrice"
+              class="input-admin w-full"
+              placeholder="Contoh: Rp 250.000 – 400.000"
+              required
+            />
+          </div>
+
+          <div class="flex gap-4">
+            <button type="submit" class="btn-primary">Tambah Item</button>
+            <button
+              type="button"
+              onclick="closeGalleryModal()"
+              class="btn-secondary"
+            >
+              Batal
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const API_URL = "http://localhost:3000";
+      let currentTab = "overview";
+      let allOrders = [];
+      let filteredOrders = [];
+      let allGallery = [];
+      let authToken = localStorage.getItem("dewiAdminToken");
+
+      function handleLogin(event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        fetch(`${API_URL}/api/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Login failed");
+            return res.json();
+          })
+          .then((data) => {
+            authToken = data.token;
+            localStorage.setItem("dewiAdminToken", authToken);
+            document.getElementById("loginPage").classList.add("hidden");
+            document.getElementById("dashboard").classList.remove("hidden");
+            loadDashboardData();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Username atau password salah!");
+          });
+      }
+
+      function handleLogout() {
+        localStorage.removeItem("dewiAdminToken");
+        authToken = null;
+        document.getElementById("loginPage").classList.remove("hidden");
+        document.getElementById("dashboard").classList.add("hidden");
+        document.getElementById("loginForm").reset();
+      }
+
+      function togglePassword() {
+        const field = document.getElementById("password");
+        field.type = field.type === "password" ? "text" : "password";
+      }
+
+      function switchTab(tab) {
+        currentTab = tab;
+
+        // Hide all sections
+        document
+          .querySelectorAll(".section")
+          .forEach((s) => s.classList.add("section-hidden"));
+
+        // Show selected section
+        document
+          .getElementById(tab + "-section")
+          .classList.remove("section-hidden");
+
+        // Update menu
+        document.querySelectorAll(".menu-item").forEach((m) => {
+          m.querySelector("div").classList.remove("menu-active");
+        });
+        document.getElementById("menu-" + tab).classList.add("menu-active");
+
+        // Update header
+        const titles = {
+          overview: { title: "Overview", subtitle: "Pantau statistik pesanan" },
+          orders: {
+            title: "Manajemen Order",
+            subtitle: "Kelola semua pesanan",
+          },
+          gallery: {
+            title: "Kelola Galeri",
+            subtitle: "Tambah/edit/hapus item galeri",
+          },
+        };
+        document.getElementById("pageTitle").textContent = titles[tab].title;
+        document.getElementById("pageSubtitle").textContent =
+          titles[tab].subtitle;
+
+        if (tab === "orders") {
+          loadOrders();
+        } else if (tab === "gallery") {
+          loadGallery();
+        }
+      }
+
+      function loadDashboardData() {
+        fetch(`${API_URL}/api/stats`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        })
+          .then((res) => res.json())
+          .then((stats) => {
+            allOrders = stats.orders || [];
+            loadOverview(stats);
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function loadOverview(stats) {
+        document.getElementById("total-aktif").textContent =
+          stats.totalAktif || 0;
+        document.getElementById("selesai-hari-ini").textContent =
+          stats.selesaiHariIni || 0;
+        document.getElementById("deadline-dekat").textContent =
+          stats.deadlineDekat || 0;
+        document.getElementById("belum-estimasi").textContent =
+          stats.belumEstimasi || 0;
+      }
+
+      function loadOrders() {
+        fetch(`${API_URL}/api/orders`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        })
+          .then((res) => res.json())
+          .then((orders) => {
+            allOrders = orders;
+            filteredOrders = [...allOrders];
+            renderOrders();
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function renderOrders() {
+        const sorted = filteredOrders.sort(
+          (a, b) => parseInt(a.noAntrian) - parseInt(b.noAntrian),
+        );
+
+        // Desktop table
+        const tableBody = document.getElementById("ordersTableBody");
+        tableBody.innerHTML = sorted
+          .map(
+            (order) => `
+                <tr class="table-row">
+                    <td class="px-6 py-4 font-bold text-cyan-400">${order.noAntrian}</td>
+                    <td class="px-6 py-4">${order.nama}</td>
+                    <td class="px-6 py-4">${order.jenis}</td>
+                    <td class="px-6 py-4 text-sm text-gray-400">${new Date(order.tglMasuk).toLocaleDateString("id-ID")}</td>
+                    <td class="px-6 py-4 text-sm text-gray-400">${order.estimasiSelesai ? new Date(order.estimasiSelesai).toLocaleDateString("id-ID") : "-"}</td>
+                    <td class="px-6 py-4">
+                        <span class="status-badge status-${order.status.toLowerCase().replace("/", "-")}">${order.status}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="status-badge ${order.bayar === "Lunas" ? "bayar-lunas" : "bayar-belum"}">${order.bayar}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <button onclick="openEditModal(${order.id})" class="btn-primary text-xs px-3 py-1">Edit</button>
+                    </td>
+                </tr>
+            `,
+          )
+          .join("");
+
+        // Mobile cards
+        const cardsContainer = document.getElementById("ordersCardsMobile");
+        cardsContainer.innerHTML = sorted
+          .map(
+            (order) => `
+                <div class="card p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <p class="text-gray-400 text-xs">No Antrian</p>
+                            <p class="text-lg font-bold text-cyan-400">${order.noAntrian}</p>
+                        </div>
+                        <button onclick="openEditModal(${order.id})" class="btn-primary text-xs px-3 py-1">Edit</button>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-400">Nama:</span> ${order.nama}</p>
+                        <p><span class="text-gray-400">Jenis:</span> ${order.jenis}</p>
+                        <p><span class="text-gray-400">Status:</span> <span class="status-badge status-${order.status.toLowerCase().replace("/", "-")}">${order.status}</span></p>
+                        <p><span class="text-gray-400">Bayar:</span> <span class="status-badge ${order.bayar === "Lunas" ? "bayar-lunas" : "bayar-belum"}">${order.bayar}</span></p>
+                    </div>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function filterOrders() {
+        const nama = document.getElementById("filterNama").value.toLowerCase();
+        const status = document.getElementById("filterStatus").value;
+        const bayar = document.getElementById("filterBayar").value;
+
+        filteredOrders = allOrders.filter((order) => {
+          const namaMatch = order.nama.toLowerCase().includes(nama);
+          const statusMatch = !status || order.status === status;
+          const bayarMatch = !bayar || order.bayar === bayar;
+          return namaMatch && statusMatch && bayarMatch;
+        });
+
+        renderOrders();
+      }
+
+      function resetFilters() {
+        document.getElementById("filterNama").value = "";
+        document.getElementById("filterStatus").value = "";
+        document.getElementById("filterBayar").value = "";
+        filteredOrders = [...allOrders];
+        renderOrders();
+      }
+
+      function openEditModal(orderId) {
+        const order = allOrders.find((o) => o.id === orderId);
+        if (order) {
+          document.getElementById("editOrderId").value = orderId;
+          document.getElementById("editNoAntrian").value = order.noAntrian;
+          document.getElementById("editNama").value = order.nama;
+          document.getElementById("editStatus").value = order.status;
+          document.getElementById("editEstimasi").value =
+            order.estimasiSelesai || "";
+          document.getElementById("editHarga").value = order.harga || 0;
+          document.getElementById("editMetode").value = order.metode || "";
+          document.getElementById("editBayar").value = order.bayar || "Belum";
+          document.getElementById("editCatatan").value = order.catatan || "";
+          document.getElementById("editOrderModal").classList.remove("hidden");
+        }
+      }
+
+      function closeEditModal() {
+        document.getElementById("editOrderModal").classList.add("hidden");
+      }
+
+      function saveOrder(event) {
+        event.preventDefault();
+        const orderId = parseInt(document.getElementById("editOrderId").value);
+
+        const updateData = {
+          status: document.getElementById("editStatus").value,
+          estimasiSelesai: document.getElementById("editEstimasi").value,
+          harga: parseInt(document.getElementById("editHarga").value) || 0,
+          metode: document.getElementById("editMetode").value,
+          bayar: document.getElementById("editBayar").value,
+          catatan: document.getElementById("editCatatan").value,
+        };
+
+        fetch(`${API_URL}/api/orders/${orderId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          body: JSON.stringify(updateData),
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Update failed");
+            return res.json();
+          })
+          .then((data) => {
+            alert("Order berhasil diperbarui!");
+            closeEditModal();
+            loadOrders();
+            loadDashboardData();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Gagal mengupdate order!");
+          });
+      }
+
+      function loadGallery() {
+        fetch(`${API_URL}/api/gallery`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        })
+          .then((res) => res.json())
+          .then((items) => {
+            allGallery = items;
+            renderGallery();
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function renderGallery() {
+        const grid = document.getElementById("galleryGrid");
+        grid.innerHTML = allGallery
+          .map(
+            (item) => `
+                <div class="card p-4 overflow-hidden">
+                    <img src="${item.image}" alt="${item.nama}" class="w-full h-48 object-cover rounded mb-3">
+                    <h3 class="font-bold text-cyan-400 mb-2">${item.nama}</h3>
+                    <p class="text-xs text-gray-400 mb-2">${item.kategori}</p>
+                    <p class="text-sm text-gray-400 mb-3 line-clamp-2">${item.deskripsi}</p>
+                    <p class="font-semibold text-yellow-400 mb-4">${item.harga}</p>
+                    <button onclick="deleteGalleryItem(${item.id})" class="btn-danger w-full text-sm">Hapus</button>
+                </div>
+            `,
+          )
+          .join("");
+      }
+
+      function openAddGalleryModal() {
+        document.getElementById("addGalleryForm").reset();
+        document.getElementById("addGalleryModal").classList.remove("hidden");
+      }
+
+      function closeGalleryModal() {
+        document.getElementById("addGalleryModal").classList.add("hidden");
+      }
+
+      function saveGalleryItem(event) {
+        event.preventDefault();
+
+        const newItem = {
+          nama: document.getElementById("galleryName").value,
+          kategori: document.getElementById("galleryCategory").value,
+          deskripsi: document.getElementById("galleryDescription").value,
+          harga: document.getElementById("galleryPrice").value,
+          image: document.getElementById("galleryImage").value,
+        };
+
+        fetch(`${API_URL}/api/gallery`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${authToken}`,
+          },
+          body: JSON.stringify(newItem),
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("Add failed");
+            return res.json();
+          })
+          .then((data) => {
+            alert("Item galeri berhasil ditambahkan!");
+            closeGalleryModal();
+            loadGallery();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Gagal menambahkan item galeri!");
+          });
+      }
+
+      function deleteGalleryItem(itemId) {
+        if (confirm("Hapus item ini?")) {
+          fetch(`${API_URL}/api/gallery/${itemId}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${authToken}` },
+          })
+            .then((res) => {
+              if (!res.ok) throw new Error("Delete failed");
+              return res.json();
+            })
+            .then((data) => {
+              loadGallery();
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Gagal menghapus item!");
+            });
+        }
+      }
+
+      // Check login on load
+      window.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("dewiAdminToken");
+        if (token) {
+          authToken = token;
+          document.getElementById("loginPage").classList.add("hidden");
+          document.getElementById("dashboard").classList.remove("hidden");
+          loadDashboardData();
+        } else {
+          document.getElementById("loginPage").classList.remove("hidden");
+          document.getElementById("dashboard").classList.add("hidden");
+        }
+      });
+
+      // Close modals on overlay click
+      document
+        .getElementById("editOrderModal")
+        .addEventListener("click", (e) => {
+          if (e.target.id === "editOrderModal") closeEditModal();
+        });
+      document
+        .getElementById("addGalleryModal")
+        .addEventListener("click", (e) => {
+          if (e.target.id === "addGalleryModal") closeGalleryModal();
+        });
+    </script>
+  </body>
+</html>
