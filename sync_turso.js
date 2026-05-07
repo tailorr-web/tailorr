@@ -7,9 +7,8 @@ const Database = require('better-sqlite3');
  * 2. Simpan file ini (Ctrl + S).
  * 3. Jalankan perintah 'node sync_turso.js' di terminal.
  */
-
-const TURSO_URL = "MASUKKAN_URL_TURSO_DISINI";
-const TURSO_TOKEN = "MASUKKAN_TOKEN_TURSO_DISINI";
+const TURSO_URL = "libsql://dewi-tailor-tailorr-web.aws-ap-northeast-1.turso.io";
+const TURSO_TOKEN = "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3NzgxNDk3MDIsImlkIjoiMDE5ZTAxYzgtYmMwMS03Yjc5LWE5ZGEtMjNiY2MxOGYzYTQ1IiwicmlkIjoiNzFhM2FkYzQtMGZlOS00NTI2LTk0MDEtZmJlOGQ3NjU1MGZhIn0.ggez1Xl9xpHI9MnE1017eshJY3EGS33TgXAnmaCru6nK2bSz8VVErvqGladXVnEaUM6RM2WiVCMOWS7wNsLAAA";
 
 async function sync() {
     if (TURSO_URL.includes("MASUKKAN")) {
